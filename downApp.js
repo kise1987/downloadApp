@@ -11,8 +11,7 @@ var fs = require("fs"),
     mime = require("./mime").mime;
 
 //www根目录
-var dirName = './downFiles',
-    host = "localhost",
+var dirName = './files',
     port = "3001";
 
 if (!fs.existsSync(dirName)) {
@@ -71,8 +70,7 @@ function formatBody(parent, files) {
         res.push("<li><a href='" + val + "'>" + val + "</a></li>");
     });
     res.push("</ul>");
-    res.push("<div style='position:relative;width:98%;bottom:5px;height:25px;background:gray'>");
-    res.push("<div style='margin:0 auto;height:100%;line-height:25px;text-align:center'>Powered By Node.js</div>");
+    res.push("<div style='position:fixed;bottom:0;margin:0 auto;line-height:25px;background:gray;text-align:center'>Powered By Node.js</div>");
     res.push("</div>")
     res.push("</body>");
     return res.join("");
@@ -131,7 +129,6 @@ http.createServer(function(req, res) {
         });
     }
 
+}).listen(port);
 
-}).listen(port, host);
-
-console.log("服务器开始运行 http://" + host + ":" + port)
+console.log("服务器开始运行:" + port);
